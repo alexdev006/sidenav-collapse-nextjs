@@ -19,17 +19,17 @@ import { NavItem } from "@/types/NavItems";
 export default function SideNav() {
   const navItems: NavItem[] = NavItems();
 
-  const [isSidebarExpanded, setIsSidebarExpanded] = useState(() => {
-    // Get the sidebar state from localStorage
-    const saved = window.localStorage.getItem("sidebarExpanded");
-    if (saved === null) {
-      return true;
-    }
-    const initialValue = JSON.parse(saved);
-    return initialValue;
-  });
+  const [isSidebarExpanded, setIsSidebarExpanded] = useState(false);
 
-  // Save the sidebar state in localStorage
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const saved = window.localStorage.getItem("sidebarExpanded");
+      if (saved !== null) {
+        setIsSidebarExpanded(JSON.parse(saved));
+      }
+    }
+  }, []);
+
   useEffect(() => {
     window.localStorage.setItem(
       "sidebarExpanded",
@@ -37,7 +37,6 @@ export default function SideNav() {
     );
   }, [isSidebarExpanded]);
 
-  // Toggle the sidebar state
   const toggleSidebar = () => {
     setIsSidebarExpanded(!isSidebarExpanded);
   };
@@ -47,10 +46,10 @@ export default function SideNav() {
       <div
         className={cn(
           isSidebarExpanded ? "w-[200px]" : "w-[68px]",
-          "border-r transition-all duration-300 ease-in-out transform hidden sm:flex h-full  bg-accent"
+          "border-r transition-all duration-300 ease-in-out transform hidden sm:flex h-full bg-accent"
         )}
       >
-        <aside className="flex h-full flex-col w-full break-words px-4   overflow-x-hidden columns-1">
+        <aside className="flex h-full flex-col w-full break-words px-4 overflow-x-hidden columns-1">
           {/* Top */}
           <div className="mt-4 relative pb-2 ">
             <div className="flex flex-col space-y-1">

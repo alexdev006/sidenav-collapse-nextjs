@@ -6,4 +6,5 @@ export interface NavItem {
   icon: ReactElement;
   isActive: boolean;
   position: string;
+  isSidebarExpanded?: boolean;
 }
