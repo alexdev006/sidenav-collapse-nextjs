@@ -129,7 +129,7 @@ export const SideNavItem: React.FC<{
               : "hover:bg-neutral-200  hover:text-neutral-700 text-neutral-500 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-white"
           }`}
         >
-          <div className="relative font-base text-sm py-1.5 px-2 flex flex-row items-center space-x-2 rounded-md duration-100">
+          <div className="relative font-base text-sm py-2 px-2 flex flex-row items-center space-x-2 rounded-md duration-100">
             {icon}
             <span>{label}</span>
           </div>
